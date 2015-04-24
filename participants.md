@@ -1,0 +1,27 @@
+Stanislav Babak         <stba@aei.mpg.de>                5/31-6/14
+Matthew Benacquista     <benacquista@phys.utb.edu>       5/24-6/07 
+Jeandrew Brink          <strictlyfromnowhere@gmail.com>  5/24-6/21
+Ryan Chornock           <chornock@ohio.edu>              5/24-6/14
+Neil Cornish            <cornish@physics.montana.edu>    5/31-6/14
+Jean-Michel Desert      <JeanMichel.Desert@colorado.edu> 5/31-6/21
+Justin Ellis            <justin.ellis18@gmail.com>       5/24-6/07 
+Jonathan Gair           <jgair@ast.cam.ac.uk>            5/31-6/14
+John Giblin             <giblinj@kenyon.edu>             6/07-6/21
+Shane Larson            <s.larson@northwestern.edu>      5/24-6/14
+Paul Lasky              <paul.lasky@monash.edu>          5/24-6/21
+Andrea Lommen           <andrea.lommen@fandm.edu>        5/31-6/14
+Katherine Mack          <kmack@unimelb.edu.au>           6/07-6/21
+Walid Majid             <majidw@gmail.com>               5/24-6/14
+Sean McWilliams         <stmcwilliams@mail.wvu.edu>      5/24-6/07 
+Chiara Mingarelli       <chiara@caltech.edu>             5/24-6/14
+David Nice              <niced@lafayette.edu>            5/31-6/21
+Samaya Nissanke         <samaya@astro.ru.nl>             5/31-6/21
+Thomas Prince           <prince@srl.caltech.edu>         5/24-6/14
+Scott Ransom            <sransom@nrao.edu>               6/14-6/21
+Joseph Romano           <joe@phys.utb.edu>               5/24-6/07 
+Laura Sampson           <l.mae.sampson@gmail.com>        5/31-6/14
+Alberto Sesana          <alberto.sesana@aei.mpg.de>      5/24-6/14
+Xavier Siemens          <siemens@gravity.phys.uwm.edu>   6/07-6/21
+Stephen Taylor          <steve.taylor1987@gmail.com>     5/24-6/14
+Michele Vallisneri      <vallis@vallis.org>              5/24-6/07  6/14-6/21
+Rutger van Haasteren    <vhaasteren@gmail.com>           5/31-6/21
