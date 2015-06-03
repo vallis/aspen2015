@@ -24,3 +24,5 @@ Xavier Siemens          <siemens@gravity.phys.uwm.edu>   6/07-6/21
 Stephen Taylor          <steve.taylor1987@gmail.com>     5/24-6/14
 Michele Vallisneri      <vallis@vallis.org>              5/24-6/07  6/14-6/21
 Rutger van Haasteren    <vhaasteren@gmail.com>           5/31-6/21
+
+Ken Chen                <chenken1229@gmail.com>
