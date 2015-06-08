@@ -1,0 +1,137 @@
+\documentclass[prd,aps,eqsecnum]{revtex4}
+\usepackage{epsf,graphicx,latexsym,multirow,rotating}
+\usepackage{pifont}	%http://ctan.org/pkg/pifont
+\def\rmd{{\rm d}}
+\newcommand{\erf}[1]{(\ref{#1})}
+\newcommand{\cmark}{\ding{51}}%	tick
+\newcommand{\xmark}{\ding{55}}%	cross
+
+
+\begin{document}
+
+\title{Eccentricity exploration project}
+
+\author{CiccioPaletta $^{1}$,}
+\vspace{0.4cm}
+\affiliation{$^{1}$ Cernusco Lombardone} 
+
+
+
+%\author{Stanislav Babak}
+%\affiliation{ Max Planck Institut fuer Gravitationsphysik, Albert-Einstein-Institut Am Muehlenberg 1,  D-14476 Golm, Germany}
+%\author{Robert H Cole}
+%\affiliation{Institute of Astronomy, University of Cambridge, Madingley
+%Road, Cambridge, CB3 0HA, UK}
+%\author{Jonathan R Gair}
+%\affiliation{Institute of Astronomy, University of Cambridge, Madingley
+%Road, Cambridge, CB3 0HA, UK}
+%\author{Christopher J Moore}
+%\affiliation{Institute of Astronomy, University of Cambridge, Madingley
+%Road, Cambridge, CB3 0HA, UK}
+
+\date{\today}
+
+\begin{abstract}
+  The main idea of the project is to explore the eccentricity of SMBH binaries at the moment of their formation. This seems to be one of the crucial ingredients to understand the dynamics of SMBH binaries, since the subsequent evolution seems to be fairly well captured by three body scattering experiments. We therefore propose to run a suite of relatively short N-body simulations of merging bulges varying different system parameters, to investigate their effects on the eccentricity of the forming SMBH binary.  
+\end{abstract}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Setting the stage}
+I assume the initial setup is constituted by a two relaxed bulges described by Dehnen density profiles
+\begin{equation}
+\rho(r)=\frac{(3-\gamma)M_*}{4\pi}\frac{r_0}{r^{\gamma}(r+r_0)^{4-\gamma}},
+\label{rhoD}
+\end{equation}
+where $M_*$ is the total mass of the stellar bulge, $r_0$ is the scale radius, and $\gamma$ is the inner logarithmic slope. Each bulge hosts a SMBH of mass $M$. There are several parameters defining the system, and some of them can influence the SMBH binary eccentricity at the moment of its formation, $e_0$:
+\begin{itemize}
+\item the MBHB mass ratio $q=M_2/M_1$,
+\item the merging bulges mass ratio $q_*=M_{2,*}/M_{1,*}$,
+\item the density profiles of the merging galaxies,
+\item the eccentricity of the initial orbit of the two merging galaxies $e_*$,
+\item the numerical resolution of the runs (i.e., the number of particles). For example, Khan Just and Merritt (2011) consistently find higher SMBH binary eccentricities for high number of particles in their merging C and D models. 
+\end{itemize}  
+On top of this, there can simply be a certain amount of stochasticity.
+
+\subsection{Current status}
+According to the notes I took during the call, Alessia and Fazeel already have some interesting material.
+
+{\bf Alessia.} Working with a master student in Como. 
+\begin{itemize}
+\item running HighGPU (please fix name :D), same of $\phi$-GRAPE but written specifically for GPU,
+\item simulations from 32K to 256K particles, check N-particle dependence,
+\item some issue with energy conservation when setting softening to 10$^{-5}$. Probably a softening of 10$^{-4}$ is enough for our purposes,
+\item few different $\gamma$,
+\item few different initial orbits.
+\end{itemize}
+
+{\bf Fazeel.} Has several simulations done for a different project.
+\begin{itemize}
+\item running $\phi$-GRAPE,
+\item 512K particles,
+\item 1/4 mass ratio,
+\item $\gamma=0.5, 1, 1.5$,
+\item 10 simulations with the same orbit for each $\gamma$, to check for stochasticity,
+\item different mass functions for the stellar particles.
+\end{itemize}
+
+\subsection{Resources}
+Each simulation should take a couple of weeks on 4 GPU cores (hope I got this correctly). Here follows the GPU count (I got lost in the counts of cards and cores):
+\begin{itemize}
+\item 2 GPU cards with 4 cores each from Alessia;
+\item 8 GPU (cores or cards?) form Fazeel;
+\item (possibly) 4 GPU (cores or cards?) from Kelly;
+\item (possibly) 4 GPU (cores or cards?) from Peter.  
+\end{itemize}
+Assuming these are all cores and that a simulation runs on 4 cores in two weeks, we can run 6 simulations every two weeks; 12 a month. If we start at the beginning of July we might aim at $\sim$50 simulations.
+
+\subsection{Proposed plan}
+The proposed plan should cover, within our computational possibilities, the relevant parameter space. I think the first two things to check are:
+\begin{enumerate}
+\item numerical convergence,
+\item stochasticity.
+\end{enumerate}
+
+{\bf Numerical convergence.} Alessia has already some simulations on this (and also Fazeel showed some results on the subject in his 2011 paper). I would consider two-three different systems. And increase the number of particles from 32K to 512K. Hopefully we find 'convergence' in all the systems, at which point we can be confident of the reliability of our results. I would propose (pending whatever simulations Alessia already has):
+\begin{itemize}
+\item Equal mass, $M/M_*=0.005$, $\gamma=1$, $e_*=0.6$: 32K to 512K,
+\item $q=1/4$, $M/M_*=0.01$ $\gamma=0.5$, $e_*=0.8$: 32K to 512K,
+\item $q=1/10$, $M/M_*=0.01$ $\gamma=1.5$, $e_*=0.8$: 32K to 512K.
+\end{itemize}
+{\it TOTAL: 4 'long' simulations (512K) plus several shorter ones}.
+Feel free to propose different systems, I just tried to have three different enough systems so that, in case we see convergence, we can be confident that this would happen in general.
+
+{\bf Stochasticity.} Fazeel already has several simulations on this, for $q=1/4$ and different $\gamma$. I think it would be a waste not to use those simulations. However, those all share the same initial orbit and mass ratio. I would add one more system with $q=1$, and a different $e_0$ (dunno what value Fazeel assumed in his runs). We can maybe have five runs and check if the distribution of final eccentricities of the forming SMBHB are consistent with the other results Fazeel have.
+{\it TOTAL: 5 'long' simulations}.
+
+{\bf Note.} Stochasticity and convergence might well be blended together (for example, we can find that the spread of eccentricity due to numerical resolution is consistent with the spread due to simple stochasticity of the behaviour of the system). I think the discriminant would be if we see a consistent trend (more than a scatter) by increasing the number of particle (as it seems to be the case in Khan Just and Merritt 2011).
+
+If we are confident that our results converge in term of resolution, and we have a good estimate of the stochasticity, we can then proceed exploring a bit the parameter space of:
+\begin{enumerate}
+\item the MBHB mass ratio $q=M_2/M_1$,
+\item the merging bulges mass ratio $q_*=M_{2,*}/M_{1,*}$,
+\item the density profiles of the merging galaxies,
+\item the eccentricity of the initial orbit of the two merging galaxies $e_*$.
+\end{enumerate}   
+
+The plan I'm proposing includes 45 simulations, some of which, however, we will already have because of the previous runs. If this is too much, we can cut something and propose a revised, less ambitious, schedule.
+I propose to proceed as follow:
+\begin{itemize}
+\item{pick three representative SMBH mass ratios $q=1, 1/4, 1/10$;}
+\item{pick three density profiles $\gamma=0.5,1,1.5$}
+\item{pick five initial orbital eccentricity $e_*=0.5,0.6,0.7,0.8,0.9$}.
+\end{itemize}
+{\it TOTAL: 45 long Simulations.} The latter point is based on results of halo mergers plus dynamical friction investigations. Zentner et al. 2005, showed that the typical circularity $\eta=\sqrt{1-e^2}$ of merging DM halos has a broad peak around $\eta\approx0.5$. However, those that merge within few Gyr has a shifted broad peak around $\eta\approx0.4$. Those values correspond to eccentricities of $e_*\approx 0.8-0.9$, but the distribution of $\eta$ has a long tail to large values. Moreover, Colpi Mayer \& Governato 1999 showed, both analytically and numerically, that DM halos inspiralling under the action of dynamical friction maintain roughly their initial eccentricity. We are therefore justify to infer that this would also be the eccentricity distribution of merging bulges.
+
+{\bf Note}. There are unspecified things in this plan:
+\begin{itemize}
+\item what about the mass ratio of merging bulges? Do we keep it the same as the SMBH mass ratio, or do we always merge equal mass bulges? I'd prefer the first option, but I don't know if that's numerically more challenging;
+\item do we always keep the same $M/M_*$ ratio? What should we use? 0.01? 0.005?
+\item what about the possibility of merging bulges with different $\gamma$? Should we try that?
+\end{itemize}
+
+Hope this is a good starting point. Look forward to hearing your thoughts.
+
+\end{document}
+
