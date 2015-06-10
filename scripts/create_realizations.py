@@ -44,7 +44,7 @@ if not os.path.exists(outdir):
         except OSError:
             pass
 
-
+ct = 0
 for d, p in zip(delays, parfiles):
     print 'Using {0} delay with parfile {1}.'.format(d.split('/')[-1], p.split('/')[-1])
 
@@ -63,7 +63,7 @@ for d, p in zip(delays, parfiles):
     psr.stoas[:] += res
     
     # adds white noise at level of defined uncertainties above
-    ts.add_efac(psr, 1, seed=args.seed)
+    ts.add_efac(psr, 1, seed=(args.seed*ct))
 
     # fit
     psr.fit()
@@ -71,3 +71,6 @@ for d, p in zip(delays, parfiles):
     # save par and tim file
     psr.savepar(outdir + '/' + psr.name + '.par')
     psr.savetim(outdir + '/' + psr.name + '.tim')
+
+    # update counter 
+    ct += 1
